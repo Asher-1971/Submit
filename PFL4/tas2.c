@@ -3,7 +3,7 @@
 int main(void){
     float withdraw =0 , balance = 0 ;
     printf("input available balance: ");
-    scanf("%.2f", &balance);
+    scanf("%f", &balance);
     printf("%.2f", balance);
 
     if (balance > 500){
