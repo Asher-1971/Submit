@@ -8,7 +8,7 @@ int main(void){
     scanf("%f", &withdraw);
 
 
-    if (balance > 0 && withdraw <= balance){
+    if (withdraw > 0 && withdraw <= balance){
         printf("Withdraw Approved");
     }
     else {
