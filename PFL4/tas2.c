@@ -4,12 +4,14 @@ int main(void){
     float withdraw =0 , balance = 0 ;
     printf("input available balance: ");
     scanf("%f", &balance);
-    printf("%.2f", balance);
+    printf("input withdraw amount: ");
+    scanf("%f", &withdraw);
 
-    if (balance > 500){
-        printf("High Usage");
+
+    if (balance > 0 && withdraw <= balance){
+        printf("Withdraw Approved");
     }
     else {
-        printf("Normal Usage");
+        printf("withdraw denied");
     }
 }
