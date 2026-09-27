@@ -8,7 +8,7 @@ int main(void)
 
     printf("Enter age: ");
     scanf("%d", &age);
-    printf("Enter day (W for weekday, H for weekend/holiday): ");
+    printf("Enter day (W for weekday, H for holiday): ");
     scanf(" %c", &day);
 
     if (age < 12)
