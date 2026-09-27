@@ -4,7 +4,14 @@ int main(void)
 {
     int x, y, z, w, largest;
 
-    scanf("%d %d %d %d", &x, &y, &z, &w);
+    printf("Enter X: ");
+    scanf("%d", &x);
+    printf("Enter Y: ");
+    scanf("%d", &y);
+    printf("Enter Z: ");
+    scanf("%d", &z);
+    printf("Enter W: ");
+    scanf("%d", &w);
 
     if (x > y)
     {

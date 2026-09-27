@@ -4,7 +4,12 @@ int main(void)
 {
     float a, b, c;
 
-    scanf("%f %f %f", &a, &b, &c);
+    printf("Enter side 1: ");
+    scanf("%f", &a);
+    printf("Enter side 2: ");
+    scanf("%f", &b);
+    printf("Enter side 3: ");
+    scanf("%f", &c);
 
     if (a + b > c)
     {

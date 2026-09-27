@@ -6,7 +6,10 @@ int main(void)
     char day;
     float price;
 
-    scanf("%d %c", &age, &day);
+    printf("Enter age: ");
+    scanf("%d", &age);
+    printf("Enter day (W for weekday, H for weekend/holiday): ");
+    scanf(" %c", &day);
 
     if (age < 12)
     {

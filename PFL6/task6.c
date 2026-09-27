@@ -4,12 +4,14 @@ int main(void)
 {
     char light, button;
 
+    printf("Enter traffic light color (R, Y, or G): ");
     scanf(" %c", &light);
 
     switch (light)
     {
         case 'R':
         case 'r':
+            printf("Has the pedestrian button been pressed? (Y/N): ");
             scanf(" %c", &button);
             switch (button)
             {
@@ -22,6 +24,7 @@ int main(void)
             break;
         case 'G':
         case 'g':
+            printf("Has the pedestrian button been pressed? (Y/N): ");
             scanf(" %c", &button);
             switch (button)
             {

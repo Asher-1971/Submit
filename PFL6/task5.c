@@ -6,12 +6,18 @@ int main(void)
     char mode, operation;
     double first, second, result;
 
+    printf("Enter mode (1 for Basic Arithmetic, 2 for Power/Root): ");
     scanf(" %c", &mode);
 
     switch (mode)
     {
         case '1':
-            scanf(" %c %lf %lf", &operation, &first, &second);
+            printf("Enter operator (+, -, *, /): ");
+            scanf(" %c", &operation);
+            printf("Enter first number: ");
+            scanf("%lf", &first);
+            printf("Enter second number: ");
+            scanf("%lf", &second);
             switch (operation)
             {
                 case '+': result = first + second; printf("Result: %.2f\n", result); break;
@@ -27,7 +33,10 @@ int main(void)
             }
             break;
         case '2':
-            scanf(" %c %lf", &operation, &first);
+            printf("Enter operation (s for square, r for square root): ");
+            scanf(" %c", &operation);
+            printf("Enter number: ");
+            scanf("%lf", &first);
             switch (operation)
             {
                 case 's': printf("Result: %.2f\n", first * first); break;

@@ -6,7 +6,10 @@ int main(void)
     char type;
     float bill;
 
-    scanf("%d %c", &units, &type);
+    printf("Enter units consumed: ");
+    scanf("%d", &units);
+    printf("Enter connection type (D for domestic, C for commercial): ");
+    scanf(" %c", &type);
 
     if (type == 'D' || type == 'd')
     {

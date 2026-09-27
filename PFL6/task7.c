@@ -4,11 +4,13 @@ int main(void)
 {
     char account, transaction;
 
+    printf("Enter account type (1 for Savings, 2 for Current): ");
     scanf(" %c", &account);
 
     switch (account)
     {
         case '1':
+            printf("Enter transaction (1 for Deposit, 2 for Withdraw, 3 for Check Balance): ");
             scanf(" %c", &transaction);
             switch (transaction)
             {
@@ -19,6 +21,7 @@ int main(void)
             }
             break;
         case '2':
+            printf("Enter transaction (1 for Deposit, 2 for Withdraw, 3 for Check Balance): ");
             scanf(" %c", &transaction);
             switch (transaction)
             {
