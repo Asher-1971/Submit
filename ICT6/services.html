@@ -5,21 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Services Page</title>
     <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { background: #f4f7fb; color: #172033; font-family: Arial, sans-serif; }
-        .site-header { background: #172033; padding: 1rem 5%; }
-        .navigation { align-items: center; display: flex; justify-content: space-between; margin: 0 auto; max-width: 1100px; }
-        .logo, .nav-links a { color: #ffffff; text-decoration: none; }
-        .logo { font-size: 1.35rem; font-weight: 700; }
-        .nav-links { display: flex; gap: 0.5rem; list-style: none; }
-        .nav-links a { border-radius: 0.4rem; display: block; padding: 0.75rem 1rem; }
-        .nav-links a:hover, .nav-links a:focus-visible { background: #ffffff; color: #172033; outline: none; }
-        .page-content { padding: 5rem 1rem; text-align: center; }
+        body { font-family: Arial, sans-serif; margin: 0; }
+        nav { background: #172033; padding: 15px 5%; display: flex; justify-content: space-between; }
+        .logo, a { color: white; text-decoration: none; }
+        .logo { font-weight: bold; }
+        ul { display: flex; gap: 10px; list-style: none; margin: 0; padding: 0; }
+        li a { padding: 10px; }
+        a:hover { background: white; color: #172033; }
+        main { padding: 50px 10px; text-align: center; }
         @media (max-width: 600px) {
-            .navigation { align-items: stretch; flex-direction: column; gap: 0.75rem; }
-            .logo { text-align: center; }
-            .nav-links { flex-direction: column; gap: 0.25rem; }
-            .nav-links a { text-align: center; }
+            nav, ul { flex-direction: column; }
+            .logo, li a { text-align: center; }
         }
     </style>
 </head>
