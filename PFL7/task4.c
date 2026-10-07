@@ -7,11 +7,6 @@ int main(void)
     printf("Enter a 4 to 6 digit PIN: ");
     scanf("%d", &pin);
 
-    while (pin < 1000 || pin > 999999)
-    {
-        printf("Enter a valid PIN: ");
-        scanf("%d", &pin);
-    }
 
     copy = pin;
     while (copy > 0)
