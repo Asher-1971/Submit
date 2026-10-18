@@ -1,4 +1,6 @@
 #include <stdio.h>
+#include <string.h>
+#include <ctype.h>
 
 int main(void)
 {
@@ -7,33 +9,23 @@ int main(void)
 
     printf("Enter username: ");
     fgets(username, sizeof(username), stdin);
+    username[strcspn(username, "\n")] = '\0';
 
     for (i = 0; username[i] != '\0'; i++)
     {
-        if (username[i] == '\n')
+        if (isalpha((unsigned char) username[i]))
         {
-            username[i] = '\0';
-            break;
-        }
-
-        if ((username[i] >= 'A' && username[i] <= 'Z') ||
-            (username[i] >= 'a' && username[i] <= 'z'))
-        {
-            char lowercase = username[i];
-
-            if (lowercase >= 'A' && lowercase <= 'Z')
-                lowercase += 'a' - 'A';
-
-            if (lowercase == 'a' || lowercase == 'e' ||
-                lowercase == 'i' || lowercase == 'o' ||
-                lowercase == 'u')
+            if (tolower((unsigned char) username[i]) == 'a' ||
+                tolower((unsigned char) username[i]) == 'e' ||
+                tolower((unsigned char) username[i]) == 'i' ||
+                tolower((unsigned char) username[i]) == 'o' ||
+                tolower((unsigned char) username[i]) == 'u')
                 vowels++;
             else
                 consonants++;
-
-            if (username[i] >= 'a' && username[i] <= 'z')
-                username[i] -= 'a' - 'A';
         }
+
+        username[i] = toupper((unsigned char) username[i]);
     }
 
     printf("Vowels: %d\n", vowels);
