@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 7 - List Item Remover</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: grid;
+            place-items: center;
+            height: 100vh;
+            margin: 0;
+            background: #f9f9f9;
+        }
+        .box {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 8px 18px rgba(0, 0, 0, 0.1);
+        }
+        ul {
+            padding-left: 20px;
+        }
+        li {
+            margin: 8px 0;
+            cursor: pointer;
+            font-size: 18px;
+        }
+        li:hover {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <h2>Click an item to remove it</h2>
+        <ul id="itemList">
+            <li>Apple</li>
+            <li>Banana</li>
+            <li>Cherry</li>
+            <li>Date</li>
+            <li>Orange</li>
+        </ul>
+    </div>
+
+    <script>
+        document.getElementById("itemList").addEventListener("click", function (event) {
+            if (event.target.tagName === "LI") {
+                event.target.remove();
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 6 - Change Text Color</title>
+    <style>
+        body {
+            display: grid;
+            place-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f0f8ff;
+        }
+        .container {
+            text-align: center;
+        }
+        h1 {
+            font-size: 32px;
+            color: #000;
+            transition: color 0.3s ease;
+        }
+        button {
+            margin-top: 20px;
+            padding: 12px 20px;
+            background: #6f42c1;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 id="heading">Hello World</h1>
+        <button id="colorBtn">Change Text Color</button>
+    </div>
+
+    <script>
+        const colors = ["red", "blue", "green", "purple", "orange"];
+        let index = 0;
+
+        document.getElementById("colorBtn").addEventListener("click", function () {
+            document.getElementById("heading").style.color = colors[index];
+            index = (index + 1) % colors.length;
+        });
+    </script>
+</body>
+</html>
