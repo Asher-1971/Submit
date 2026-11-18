@@ -2,11 +2,8 @@
 
 void reverseDigits(long number)
 {
-    if (number < 10)
-    {
-        printf("%ld", number);
+    if (number == 0)
         return;
-    }
 
     printf("%ld", number % 10);
     reverseDigits(number / 10);
@@ -24,7 +21,10 @@ int main(void)
     else
     {
         printf("Reversed: ");
-        reverseDigits(number);
+        if (number == 0)
+            printf("0");
+        else
+            reverseDigits(number);
         printf("\n");
     }
 
