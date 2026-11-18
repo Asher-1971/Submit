@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gourmet Delights - Our Menu</title>
+    <style>
+        body {
+            background-color: lightgoldenrodyellow;
+            font-family: Arial, sans-serif;
+            margin: 30px;
+        }
+        h1 { color: darkred; }
+        .food-image {
+            border: 2px dashed brown;
+            float: right;
+            margin: 0 0 20px 30px;
+            width: 400px;
+            max-width: 45%;
+        }
+        a { color: darkred; }
+        @media (max-width: 700px) {
+            .food-image {
+                float: none;
+                margin: 0 0 20px;
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Explore Our Delicious Menu</h1>
+        <p>We only use the <em style="font-weight: bold; color: green;">freshest</em> ingredients to bring you the best experience!</p>
+    </header>
+
+    <hr>
+
+    <main>
+        <img class="food-image"
+             src="https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&amp;fit=crop&amp;w=400&amp;q=80"
+             alt="Delicious Gourmet Dish">
+
+        <section>
+            <h2>Appetizers</h2>
+            <ul>
+                <li>Garlic Bread</li>
+                <li>Bruschetta</li>
+                <li>Stuffed Mushrooms</li>
+                <li>Crispy Calamari</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Main Course</h2>
+            <ul>
+                <li>Grilled Herb Chicken</li>
+                <li>Creamy Mushroom Pasta</li>
+                <li>Classic Beef Steak</li>
+                <li>Roasted Vegetable Risotto</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Desserts</h2>
+            <ul>
+                <li>Chocolate Lava Cake</li>
+                <li>Vanilla Cheesecake</li>
+                <li>Fresh Fruit Tart</li>
+                <li>Strawberry Ice Cream</li>
+            </ul>
+        </section>
+    </main>
+
+    <hr>
+    <a href="index.html">Back to Home</a>
+</body>
+</html>
