@@ -1,4 +1,8 @@
+#include <ctype.h>
+#include <errno.h>
+#include <limits.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 
 typedef struct
@@ -30,11 +34,59 @@ int readLine(const char *prompt, char *value, int size)
 int readInt(const char *prompt, int *value)
 {
     char input[100];
+    char *end;
+    long parsedValue;
 
     if (!readLine(prompt, input, sizeof(input)))
         return 0;
 
-    return sscanf(input, "%d", value) == 1;
+    errno = 0;
+    parsedValue = strtol(input, &end, 10);
+    if (end == input || errno == ERANGE ||
+        parsedValue < INT_MIN || parsedValue > INT_MAX)
+        return 0;
+
+    while (isspace((unsigned char)*end))
+        end++;
+
+    if (*end != '\0')
+        return 0;
+
+    *value = (int)parsedValue;
+    return 1;
+}
+
+int readRequiredLine(const char *prompt, char *value, int size)
+{
+    char *start;
+    char *end;
+    size_t length;
+
+    while (1)
+    {
+        if (!readLine(prompt, value, size))
+            return 0;
+
+        start = value;
+        while (isspace((unsigned char)*start))
+            start++;
+
+        end = start + strlen(start);
+        while (end > start && isspace((unsigned char)end[-1]))
+            end--;
+
+        length = (size_t)(end - start);
+        memmove(value, start, length);
+        value[length] = '\0';
+
+        if (value[0] == '\0' || strchr(value, '|') != NULL)
+        {
+            printf("Enter a nonblank value without the | character.\n");
+            continue;
+        }
+
+        return 1;
+    }
 }
 
 int readRecord(FILE *file, LostFoundRecord *record)
@@ -135,9 +187,9 @@ int main(void)
     for (index = 0; index < recordCount; index++)
     {
         printf("\nRecord %d\n", index + 1);
-        if (!readLine("Item name: ", record.itemName, sizeof(record.itemName)) ||
-            !readLine("Location: ", record.location, sizeof(record.location)) ||
-            !readLine("Student contact ID: ", record.contactID, sizeof(record.contactID)))
+        if (!readRequiredLine("Item name: ", record.itemName, sizeof(record.itemName)) ||
+            !readRequiredLine("Location: ", record.location, sizeof(record.location)) ||
+            !readRequiredLine("Student contact ID: ", record.contactID, sizeof(record.contactID)))
         {
             printf("Please enter a complete record.\n");
             fclose(file);
@@ -161,8 +213,8 @@ int main(void)
 
     displayRecords();
 
-    if (!readLine("\nEnter an item name to search for: ",
-                  searchName, sizeof(searchName)))
+    if (!readRequiredLine("\nEnter an item name to search for: ",
+                          searchName, sizeof(searchName)))
         return 1;
 
     searchRecords(searchName);

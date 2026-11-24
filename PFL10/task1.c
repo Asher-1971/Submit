@@ -1,4 +1,9 @@
+#include <ctype.h>
+#include <errno.h>
+#include <limits.h>
+#include <math.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 
 int readLine(const char *prompt, char *value, int size)
@@ -23,21 +28,51 @@ int readLine(const char *prompt, char *value, int size)
 int readInt(const char *prompt, int *value)
 {
     char input[100];
+    char *end;
+    long parsedValue;
 
     if (!readLine(prompt, input, sizeof(input)))
         return 0;
 
-    return sscanf(input, "%d", value) == 1;
+    errno = 0;
+    parsedValue = strtol(input, &end, 10);
+    if (end == input || errno == ERANGE ||
+        parsedValue < INT_MIN || parsedValue > INT_MAX)
+        return 0;
+
+    while (isspace((unsigned char)*end))
+        end++;
+
+    if (*end != '\0')
+        return 0;
+
+    *value = (int)parsedValue;
+    return 1;
 }
 
 int readAmount(const char *prompt, double *amount)
 {
     char input[100];
+    char *end;
+    double parsedAmount;
 
     if (!readLine(prompt, input, sizeof(input)))
         return 0;
 
-    return sscanf(input, "%lf", amount) == 1;
+    errno = 0;
+    parsedAmount = strtod(input, &end);
+    if (end == input || errno == ERANGE || !isfinite(parsedAmount) ||
+        parsedAmount < 0.0)
+        return 0;
+
+    while (isspace((unsigned char)*end))
+        end++;
+
+    if (*end != '\0')
+        return 0;
+
+    *amount = parsedAmount;
+    return 1;
 }
 
 int main(void)

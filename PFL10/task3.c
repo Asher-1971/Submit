@@ -1,5 +1,8 @@
+#include <ctype.h>
 #include <errno.h>
+#include <limits.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 
 typedef struct
@@ -32,11 +35,26 @@ int readLine(const char *prompt, char *value, int size)
 int readInt(const char *prompt, int *value)
 {
     char input[100];
+    char *end;
+    long parsedValue;
 
     if (!readLine(prompt, input, sizeof(input)))
         return 0;
 
-    return sscanf(input, "%d", value) == 1;
+    errno = 0;
+    parsedValue = strtol(input, &end, 10);
+    if (end == input || errno == ERANGE ||
+        parsedValue < INT_MIN || parsedValue > INT_MAX)
+        return 0;
+
+    while (isspace((unsigned char)*end))
+        end++;
+
+    if (*end != '\0')
+        return 0;
+
+    *value = (int)parsedValue;
+    return 1;
 }
 
 int findBook(int bookID, Book *result)
@@ -147,6 +165,12 @@ void addBooks(void)
             break;
 
         if (fwrite(&book, sizeof(Book), 1, file) != 1)
+        {
+            perror("Could not save the book");
+            break;
+        }
+
+        if (fflush(file) != 0)
         {
             perror("Could not save the book");
             break;
