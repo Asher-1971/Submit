@@ -6,10 +6,14 @@ static int **allocateGrid(int size)
     int **grid;
     int row;
 
-    if (size <= 0 ||
-        (size_t)size > (size_t)-1 / sizeof(*grid) ||
-        (size_t)size > (size_t)-1 / sizeof(**grid))
+    if (size <= 0)
         return NULL;
+    if ((size_t)size > (size_t)-1 / sizeof(*grid) ||
+        (size_t)size > (size_t)-1 / sizeof(**grid))
+    {
+        fprintf(stderr, "Grid dimensions are too large to allocate.\n");
+        return NULL;
+    }
 
     grid = malloc((size_t)size * sizeof(*grid));
     if (grid == NULL)

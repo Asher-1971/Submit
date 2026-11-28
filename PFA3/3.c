@@ -20,8 +20,13 @@ struct Book *allocateBooks(int n)
     struct Book *books;
     int index;
 
-    if (n <= 0 || (size_t)n > (size_t)-1 / sizeof(*books))
+    if (n <= 0)
         return NULL;
+    if ((size_t)n > (size_t)-1 / sizeof(*books))
+    {
+        errno = ENOMEM;
+        return NULL;
+    }
 
     books = malloc((size_t)n * sizeof(*books));
     if (books == NULL)
